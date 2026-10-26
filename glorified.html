@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Glorified – Luau tips, resources and anti-exploit guides for Roblox</title>
+<meta name="description" content="Luau tips, the best resources for every genre, and anti-exploit guides to keep your Roblox game secure.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#09060a;--panel:#150c11;--panel2:#1f1118;--line:#43161f;--red:#ff2d4a;--deep:#b3122b;--text:#f6e9ec;--muted:#b69ba2;
+--d:"Syne",system-ui,sans-serif;--m:"JetBrains Mono",ui-monospace,Menlo,monospace}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{background:var(--bg);color:var(--text);font:17px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif}
+#stars{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse at 50% -10%,#ff2d4a30,transparent 60%)}
+.wrap{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:0 24px}
+:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+nav{position:sticky;top:0;z-index:5;background:#09060acc;backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;justify-content:space-between;align-items:center;height:60px}
+.logo{font:800 20px var(--d);text-decoration:none;letter-spacing:.04em;color:var(--text)}
+.logo b{color:var(--red)}
+nav div a{margin-left:22px;color:var(--muted);text-decoration:none;font-size:15px}
+nav div a:hover{color:var(--text)}
+.hero{padding:120px 0 110px;text-align:center}
+h1{font:800 clamp(3.4rem,13vw,9rem)/.95 var(--d);letter-spacing:-.02em;text-shadow:0 0 60px #ff2d4a66}
+.hero p{color:var(--muted);max-width:34em;margin:26px auto 34px;font-size:19px}
+.btn{display:inline-block;background:var(--red);color:#fff;font:800 16px var(--d);padding:14px 26px;border-radius:8px;text-decoration:none;box-shadow:0 0 28px #ff2d4a55;transition:box-shadow .15s}
+.btn:hover{box-shadow:0 0 44px #ff2d4a99}
+.btn.alt{background:transparent;border:1px solid var(--line);box-shadow:none;margin-left:10px}
+.btn.alt:hover{border-color:var(--red)}
+section{padding:80px 0 20px}
+h2{font:800 clamp(2rem,4.5vw,3rem)/1.05 var(--d);margin-bottom:12px}
+.sub{color:var(--muted);max-width:38em;margin-bottom:32px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:18px}
+.card{background:linear-gradient(160deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:22px;min-width:0}
+.card:hover{border-color:var(--deep)}
+.card h3{font:800 19px var(--d);margin-bottom:6px}
+.card p{color:var(--muted);font-size:15px}
+.card pre{margin-top:14px}
+pre{background:#0c0709;border:1px solid var(--line);border-radius:8px;padding:14px;overflow-x:auto;font:13px/1.65 var(--m);color:#f3d9de;tab-size:3}
+code{font:13px var(--m);background:var(--panel2);padding:1px 6px;border-radius:4px}
+.res{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+.res div{border-left:3px solid var(--red);background:var(--panel);padding:12px 16px;border-radius:0 8px 8px 0}
+.res b{font:800 16px var(--d)}
+.res span{display:block;color:var(--muted);font-size:14px;line-height:1.5}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
+.tab{font:800 14px var(--d);padding:10px 18px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--text);cursor:pointer}
+.tab[aria-selected=true]{background:var(--red);border-color:var(--red)}
+.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.cols .card h3{color:var(--red)}
+.cols ul{padding-left:18px;color:var(--muted);font-size:15px}
+.cols li{margin-bottom:8px}
+.prin{counter-reset:p}
+.prin .card::before{counter-increment:p;content:counter(p);display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--deep);font:800 15px var(--d);margin-bottom:12px}
+.bar{height:8px;background:var(--panel2);border-radius:99px;overflow:hidden;margin:6px 0 20px;border:1px solid var(--line)}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--deep),var(--red));transition:width .25s}
+.chk{list-style:none;padding:0;display:grid;gap:10px}
+.chk label{display:flex;gap:12px;align-items:flex-start;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:13px 16px;cursor:pointer}
+.chk input{accent-color:var(--red);width:19px;height:19px;margin-top:3px;flex:none}
+.note{margin-top:30px;border:1px solid var(--deep);background:#ff2d4a12;border-radius:12px;padding:18px 22px;color:var(--muted);font-size:15px}
+.note b{color:var(--text)}
+footer{position:relative;z-index:1;margin-top:80px;border-top:1px solid var(--line);padding:34px 24px 50px;text-align:center;color:var(--muted);font-size:14px}
+@media(max-width:860px){.cols{grid-template-columns:1fr}nav div a:nth-child(n+4){display:none}.grid{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+
+main{counter-reset:sc}
+section h2::before{counter-increment:sc;content:"0" counter(sc);display:block;font:600 13px var(--m);color:var(--red);letter-spacing:.25em;margin-bottom:8px}
+h1{background:linear-gradient(100deg,#fff 25%,#ff2d4a 48%,#fff 72%);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shm 7s linear infinite;filter:drop-shadow(0 0 40px #ff2d4a66);text-shadow:none}
+@keyframes shm{to{background-position:-220% 0}}
+.eye{font:600 13px var(--m);letter-spacing:.3em;color:var(--red);display:block;margin-bottom:18px}
+.stats{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:56px}
+.stat{min-width:140px;border:1px solid var(--line);border-radius:14px;padding:14px 20px;background:#150c11b0;backdrop-filter:blur(6px)}
+.stat b{display:block;font:800 36px var(--d);color:var(--red)}.stat span{color:var(--muted);font-size:14px}
+#sp{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--deep),var(--red));z-index:9;box-shadow:0 0 12px var(--red)}
+nav div a{position:relative}nav div a.act{color:var(--text)}
+nav div a.act::after{content:"";position:absolute;left:0;right:0;bottom:-8px;height:2px;background:var(--red)}
+.rv{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease,border-color .2s}
+.rv.in{opacity:1;transform:none}
+.card,.res div{position:relative;overflow:hidden}
+.card::after,.res div::after{content:"";position:absolute;inset:0;border-radius:inherit;background:radial-gradient(260px circle at var(--mx,50%) var(--my,50%),#ff2d4a28,transparent 60%);opacity:0;transition:opacity .25s;pointer-events:none}
+.card:hover::after,.res div:hover::after{opacity:1}
+.res div{cursor:pointer;transition:transform .2s,border-color .2s}.res div:hover{transform:translateX(5px);border-color:#ff7a8c}
+.btn,.tab,.node{position:relative;overflow:hidden}
+.rp{position:absolute;width:20px;height:20px;margin:-10px 0 0 -10px;border-radius:50%;background:#fff5;transform:scale(0);animation:rp .6s ease-out forwards;pointer-events:none}
+@keyframes rp{to{transform:scale(14);opacity:0}}
+#panel .card{animation:up .5s both}#panel .card:nth-child(2){animation-delay:.08s}#panel .card:nth-child(3){animation-delay:.16s}
+@keyframes up{from{opacity:0;transform:translateY(18px)}}
+.cw{position:relative;margin-top:14px}.cw pre{margin:0}
+.cp{position:absolute;top:8px;right:8px;background:var(--panel2);color:var(--text);border:1px solid var(--line);border-radius:6px;padding:4px 10px;font:600 12px var(--m);cursor:pointer;opacity:.7;overflow:hidden}
+.cp:hover{opacity:1;border-color:var(--red)}
+#toast{position:fixed;left:50%;bottom:28px;transform:translate(-50%,30px);background:var(--deep);color:#fff;padding:12px 22px;border-radius:99px;opacity:0;transition:.3s;z-index:20;pointer-events:none;box-shadow:0 0 30px #ff2d4a66;font-size:15px}
+#toast.on{opacity:1;transform:translate(-50%,0)}
+.tl{display:flex;overflow-x:auto;padding:6px 0 18px}
+.node{flex:1;min-width:150px;background:none;border:0;color:var(--muted);cursor:pointer;text-align:left;padding:22px 10px 0;font:800 16px var(--d)}
+.node::before{content:"";position:absolute;top:0;left:10px;width:14px;height:14px;border-radius:50%;background:var(--line);transition:.25s}
+.node::after{content:"";position:absolute;top:6px;left:28px;right:0;height:2px;background:var(--line)}
+.node small{display:block;font:400 12px var(--m);color:var(--muted);margin-top:2px}
+.node[aria-selected=true]{color:var(--text)}.node[aria-selected=true]::before{background:var(--red);box-shadow:0 0 18px var(--red)}
+.tlp{margin:6px 0 26px;border-color:var(--deep)}.tlp h3{font:800 22px var(--d);margin-bottom:8px}.tlp p{font-size:16px}
+.pop{animation:up .4s both}
+h3.sb{font:800 24px var(--d);margin:44px 0 16px}
+.flip{perspective:900px;background:none;border:0;padding:0;cursor:pointer;color:var(--text);text-align:left;min-height:200px}
+.fi{position:relative;width:100%;height:100%;min-height:200px;transition:transform .6s;transform-style:preserve-3d}
+.flip.f .fi{transform:rotateY(180deg)}
+.fa,.fb{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:12px;padding:20px;border:1px solid var(--line);display:flex;flex-direction:column;justify-content:center}
+.fa{background:linear-gradient(160deg,var(--panel2),var(--panel))}.fa:hover{border-color:var(--red)}
+.fb{background:linear-gradient(160deg,#431018,#1b0a10);transform:rotateY(180deg);border-color:var(--red)}
+.fa small,.fb small{font:600 12px var(--m);letter-spacing:.2em;color:var(--red);margin-bottom:8px}
+.fa h3{font:800 19px var(--d)}.fb p{font-size:15px}
+.cmp{width:100%;border-collapse:collapse;min-width:560px}.cmp th,.cmp td{padding:14px 16px;text-align:left;border-bottom:1px solid var(--line);font-size:15px}
+.cmp th{font:800 15px var(--d);color:var(--red)}.cmp td:first-child{color:var(--muted);white-space:nowrap}.cmp tr:hover td{background:#ff2d4a12}
+@media(prefers-reduced-motion:reduce){h1,.fi,.rp,#panel .card,.pop{animation:none!important}.rv{opacity:1!important;transform:none!important}h1{color:var(--text);background:none}}
+</style>
+</head>
+<body>
+<canvas id="stars" aria-hidden="true"></canvas>
+<nav><div class="wrap"><a class="logo" href="#top">GLORIFIED<b>.</b></a>
+<div><a href="#tips">Luau tips</a><a href="#resources">Resources</a><a href="#genres">Genres</a><a href="#executors">Executors</a><a href="#bootstrappers">Bootstrappers</a><a href="#secure">Anti-exploit</a><a href="#checklist">Checklist</a></div></div></nav>
+
+<main class="wrap" id="top">
+<header class="hero"><span class="eye">ROBLOX DEVELOPER COMMUNITY</span><h1>Glorified</h1>
+<p>Write cleaner Luau, pick the right tools for your genre, and build Roblox games that exploiters can’t break.</p>
+<a class="btn" href="#genres">Pick your genre</a><a class="btn alt" href="#checklist">Security checklist</a><div class="stats" id="stats"></div></header>
+
+<section id="tips"><h2>Luau tips that save hours</h2>
+<p class="sub">Habits that make scripts faster, safer, and easier to debug.</p><div class="grid" id="tipGrid"></div></section>
+
+<section id="resources"><h2>Resources worth using</h2>
+<p class="sub">Tools and libraries the Roblox developer community relies on. Check each project’s page for current status before adopting it.</p><div class="res" id="resGrid"></div></section>
+
+<section id="genres"><h2>Resources and defenses by genre</h2>
+<p class="sub">Every genre has its own favorite exploits. Pick yours to see the main resources, how exploiters attack it, and how to stop them.</p>
+<div class="tabs" role="tablist" id="tabs"></div><div class="cols" id="panel" role="tabpanel" aria-live="polite"></div></section>
+
+<section id="executors"><h2>Executors, explained</h2>
+<p class="sub">Know your adversary. This is a history and risk guide for developers and curious players. It has no downloads, no setup steps and no recommendations, and the dates are approximate.</p>
+<div class="note" style="margin:0 0 28px"><b>Quick clarification.</b> Roblox does not use executors. It fights them. The tool Roblox does use is a bootstrapper, which is a completely different thing, covered in the next section.</div>
+<div class="tl" id="tl" role="tablist" aria-label="Executor timeline"></div><div class="card tlp" id="tlp" aria-live="polite"></div>
+<div class="grid" id="exGrid"></div>
+<h3 class="sb">Myth or fact? Tap a card</h3><div class="grid" id="mythGrid"></div></section>
+
+<section id="bootstrappers"><h2>Bootstrappers, explained</h2>
+<p class="sub">The launcher that starts Roblox. It is not an exploitation tool, and Roblox itself relies on one.</p>
+<div class="grid" id="bootGrid"></div>
+<h3 class="sb">Executor vs bootstrapper</h3><div class="card" id="cmp" style="overflow-x:auto"></div></section>
+
+<section id="secure"><h2>Keep your game inexploitable</h2>
+<p class="sub">These principles apply to every genre. Exploiters control their own client completely, so the server has to decide what is real.</p>
+<div class="grid prin" id="prinGrid"></div>
+<h3 style="font:800 22px var(--d);margin:40px 0 12px">Validate every remote</h3>
+<pre id="code1"></pre>
+<h3 style="font:800 22px var(--d);margin:34px 0 12px">Catch speed and teleport hacks</h3>
+<pre id="code2"></pre>
+<div class="note"><b>No anti-cheat is perfect.</b> Aim to make cheating expensive, limit the damage when it happens, and log everything so you can ban in waves. Flag suspicious players before you punish them, because lag looks a lot like cheating.</div></section>
+
+<section id="checklist"><h2>Hardening checklist</h2>
+<p class="sub">Tick these off before you launch. Your progress is saved in this browser.</p>
+<div class="bar" role="progressbar" aria-label="Checklist progress"><i id="prog"></i></div><ul class="chk" id="chk"></ul></section>
+</main>
+<footer>Glorified is a community resource and is not affiliated with Roblox Corporation.<br>Built to help developers protect their own games.</footer>
+
+<script>
+/* ---------- EDIT ME: all site content lives here ---------- */
+const TIPS=[
+["Start with --!strict","Strict mode catches typos and nil bugs before you press Play. Annotate function parameters and return types.","--!strict\nlocal function heal(h: Humanoid, amount: number)\n\th.Health = math.min(h.Health + amount, h.MaxHealth)\nend"],
+["Use task, not wait","task.wait, task.spawn and task.delay replace the older wait, spawn and delay, which are throttled and deprecated.","task.wait(0.5)\ntask.spawn(function() print(\"runs next frame\") end)"],
+["Cache what you reuse","Get services once at the top of the script and store instances in variables instead of searching the hierarchy every frame."],
+["Clean up every connection","Disconnect events and destroy instances when objects go away. Leaks build up over long servers. A Janitor or a simple cleanup list keeps it tidy."],
+["Tag, don’t hardcode","CollectionService tags and Attributes let one script control hundreds of parts, like every kill brick.","for _, part in CollectionService:GetTagged(\"KillBrick\") do\n\tpart.Touched:Connect(onTouch)\nend"],
+["Split code into modules","Keep one server Script and one LocalScript as entry points. Put everything else in ModuleScripts you can reuse and test."],
+["Events beat polling","A while-true loop that checks state every frame wastes time. Use GetPropertyChangedSignal, BindableEvents, or RemoteEvents instead."],
+["Wrap risky calls in pcall","DataStores, MarketplaceService and HTTP can fail. Retry with a delay and never let one failure stop your game loop.","local ok, result = pcall(function()\n\treturn store:GetAsync(key)\nend)\nif not ok then warn(result) end"],
+["Use StreamingEnabled on big maps","Streaming loads only nearby parts, which saves memory and hides far-away objects. Use WaitForChild with a timeout for streamed parts and never assume they exist on the client."],
+["Iterate tables directly","Luau lets you loop with for-in without pairs or ipairs, which reads cleaner and runs fast.","for index, value in myTable do\n\tprint(index, value)\nend"],
+["Freeze your constants","table.freeze stops accidental edits to config tables, and it makes bugs show up immediately.","local CONFIG = table.freeze({\n\tMaxHealth = 100,\n\tRespawnTime = 5,\n})"],
+["Use UnreliableRemoteEvent for cosmetics","Frequent, non-critical data like particle effects or cursor positions can use unreliable remotes to save bandwidth. Never use them for purchases or damage."],
+["Test with several clients","Studio’s Test tab can start a local server with multiple players. Use it to find replication bugs and to try your own exploit attempts."],
+["Profile before optimizing","Open the MicroProfiler with Ctrl+F6 and the Script Performance window. Keep visuals on the client and authority on the server."]];
+const RES=[
+["Rojo","Sync files to Studio so you can use VS Code and Git."],["Wally","Package manager for Roblox libraries."],
+["Luau LSP","Autocomplete and type checking in VS Code."],["StyLua and Selene","Formatter and linter for consistent, bug-free code."],
+["ProfileStore","Session-locked data saving by loleris, the successor to ProfileService."],["Janitor","Cleans up connections and instances for you."],
+["Promise","Clean async code with chaining and cancellation."],["Fusion and React-Lua","Reactive UI frameworks for complex interfaces."],
+["Matter","Entity component system for large, data-heavy games."],["Jest for Roblox","Unit testing for your modules."],
+["roblox-ts","Write TypeScript that compiles to Luau."],
+["Zap and ByteNet","Typed, validated networking that cuts remote boilerplate and bad input."],["ZonePlus","Detect when players or parts enter an area: fields, goals, safe zones."],
+["TopbarPlus","Custom topbar buttons and menus in a few lines."],["Cmdr","Extensible admin console with permission checks."],
+["Hoarcekat","Preview UI components in Studio without running the game."],["Lune","Run Luau outside Roblox for scripts, tests and tooling."],
+["Rokit","Toolchain manager that pins Rojo, Wally and friends per project."],["Moonwave","Generate documentation from your Luau comments."],
+["Open Cloud","Official API for DataStores, publishing and automation from outside Studio."],["TeleportService and MessagingService","Move players between places and send messages across servers."],
+["Moon Animator","Animation plugin for polished character and prop animation."],["Creator Dashboard analytics","Retention, session length and revenue data for balancing your game."],["Creator Hub and DevForum","Official docs, release notes, and security advice."]];
+const GENRES={
+"Obby":{res:["CollectionService tags for hazards and checkpoints","TweenService for moving platforms","ProfileStore to save stage progress"],
+ bad:["Teleporting to a late stage","Noclip through walls","Touching the finish part from far away"],
+ fix:["Store the player’s stage on the server only","Allow checkpoint touches only for the next stage","Check distance from the last checkpoint and reset on a violation","Time the minimum possible stage duration"]},
+"Tycoon and Simulator":{res:["ProfileStore for currency and upgrades","Config ModuleScripts in ServerStorage for prices","MarketplaceService ProcessReceipt for purchases"],
+ bad:["Firing buy remotes with fake amounts","Auto-collect spam","Duplicating items or currency","Buying items for free"],
+ fix:["The client sends only an item ID, never a price","Cap earnings per second and log outliers","Handle purchases idempotently so a repeat can’t double-grant","Rate-limit every collect and buy remote"]},
+"FPS and Shooter":{res:["Server Raycasting with RaycastParams","FastCast for projectile weapons","Position history for lag compensation"],
+ bad:["Aimbot and silent aim","Fire-rate and no-recoil hacks","Fake hit reports","Infinite ammo"],
+ fix:["Never accept “I hit player X for Y damage” from the client","Re-raycast on the server from a validated muzzle position","Track ammo and fire rate on the server","Cap lag-compensation rewind to a few hundred milliseconds","Flag inhuman accuracy and snap-angle stats for review"]},
+"RPG":{res:["ProfileStore for inventory and stats","PathfindingService for server-side NPCs","Ability ModuleScripts with server cooldowns"],
+ bad:["Editing stats or levels","Instant quest completion","Item duplication","Spoofing loot remotes"],
+ fix:["Keep stats, inventory and quests only on the server","Roll loot on the server and log every drop","Validate quest progress from server events","Make trades atomic with a two-step confirmation","Use UpdateAsync for data changes that must not overlap"]},
+"Fighting and PvP":{res:["Server hit detection with GetPartBoundsInBox or shapecasts","Collision groups for characters","Server-side combo and cooldown timers"],
+ bad:["Extending hitboxes and reach","Animation canceling","God mode","Flinging other players"],
+ fix:["Detect hits on the server from positions it knows","Change health only on the server","Put characters in a collision group so they can’t fling each other","Time attack windows on the server, not by client animation events","Use SetNetworkOwner(nil) on important unanchored parts"]},
+"Racing and Vehicles":{res:["VehicleSeat or constraint-based vehicles","Checkpoint modules with ordered IDs","Server-measured lap timers"],
+ bad:["Speed hacks","Skipping checkpoints","Vehicle flinging","Fake lap times"],
+ fix:["Require checkpoints in order and compute lap time on the server","Reject laps faster than the track’s physical minimum","Check speed against the vehicle’s maximum with headroom","Put vehicles in their own collision group"]},
+"Football (Soccer)":{res:["A server-owned ball with controlled ownership hand-off","ZonePlus for goals, out of bounds and offside lines","A server match state machine in a ModuleScript","UnreliableRemoteEvent for cosmetic crowd and effects"],
+ bad:["A client-owned ball launched at huge speed","Teleporting the ball into the goal","Reach hacks to touch the ball from far away","Editing the score or match clock"],
+ fix:["Keep the ball’s network owner on the server, or hand off briefly and cap its velocity","Kick requests carry only a direction and power, and the server checks distance to the ball","Clamp ball speed and position every Heartbeat","Detect goals with a server-side zone check, never client touches","Keep score and clock only on the server"]},
+"American Football":{res:["A play state machine: pre-snap, live and dead ball","ZonePlus for end zones and boundaries","Server hit detection for tackles","A server play clock"],
+ bad:["Teleporting the ball carrier into the end zone","Throwing with spoofed velocity","Reach tackles and hitbox extension","Speed hacks across the field"],
+ fix:["The server decides who holds the ball","Pass requests carry only a target and power, and both are clamped","Validate catches by distance to the ball’s server position","Award touchdowns from a server zone check on the ball carrier","Account for sprint and stamina in server speed checks"]},
+"Basketball":{res:["Server-computed shot results using player stats","ZonePlus for the hoop and the three-point line","Server cooldowns for shoot, pass and steal","Client animations for visuals only"],
+ bad:["Perfect shot timing every time","Placing the ball in the hoop directly","Auto-steal and auto-block reach","Fake shot-meter results sent by the client"],
+ fix:["The client sends “shoot” and the server measures timing and rolls make or miss","Use a server-owned Random for outcomes","Check distance and facing for steals and blocks","Track every cooldown on the server","Detect scoring with a server zone, not a client touch"]},
+"Tower Defense":{res:["Waypoint paths for enemies","Server targeting loops with CollectionService","ProfileStore for unlocks and progress","A wave controller ModuleScript"],
+ bad:["Placing towers anywhere or on top of each other","Fake upgrade requests","Changing game speed","Duplicate rewards"],
+ fix:["Validate placement on the server: grid, cost and tower limits","The server owns enemy health, wave timers and money","Upgrade costs come from server config","Grant wave rewards once through server events","Rate-limit place and sell remotes"]},
+"Horror":{res:["PathfindingService for server-side monsters","Client lighting and audio for atmosphere","Server objective and key tracking","ZonePlus for triggers and safe rooms"],
+ bad:["Walking through walls to skip the monster","Teleporting to the exit","Collecting keys from far away","Removing fog and darkness client-side"],
+ fix:["Keep monster AI, doors and keys on the server","Validate pickups by distance and line of sight","Open the exit only after the server confirms all objectives","Run speed and teleport checks","Treat client visuals as cosmetic and never put gameplay there"]},
+"Battle Royale and Survival":{res:["TeleportService reserved servers for match lobbies","Server-rolled loot tables","A server-calculated shrinking zone","Server raycasting like FPS games"],
+ bad:["ESP and wallhacks that reveal loot and players","Teleporting to loot or the safe zone","Aimbot","Spawning items by remote"],
+ fix:["Use StreamingEnabled and keep hidden loot and players server-only until nearby","Spawn loot on the server and validate pickups by distance","Apply zone damage on the server","Reuse the FPS hit validation checklist","Validate drop, pickup and trade remotes"]},
+"Roleplay and Social":{res:["Cmdr or a custom admin system with ranks","TextChatService for chat and filtering","ProfileStore for homes and outfits","Server-side permission checks"],
+ bad:["Abusing admin remotes","Spawning items or vehicles for everyone","Chat and remote spam","Flinging and trapping other players"],
+ fix:["Authorize every admin action on the server by UserId or group rank","Rate-limit spawn and emote remotes","Use collision groups to stop flinging","Let TextChatService handle filtering rather than writing your own","Limit how many items each player can spawn"]},
+"Pet Collecting and Trading":{res:["ProfileStore with UpdateAsync for trades","Weighted hatch tables on the server","MarketplaceService for passes and products","MessagingService for rare-drop announcements"],
+ bad:["Duplicating pets through trade race conditions","Forcing hatch results","Spoofing trade acceptance","Hatching faster than allowed"],
+ fix:["Lock both inventories during a trade and swap them atomically","Roll hatches on the server with a server-owned Random","Require both players to confirm through the server","Cap hatch rate and log rare drops","Keep audit logs so you can roll back a dupe"]}};
+const PRIN=[
+["The server is the authority","The client asks (“buy the sword”) and the server decides. Never let the client report results like “I now have 500 coins.”"],
+["Treat every argument as hostile","Check type, range, existence and ownership of everything that arrives in a RemoteEvent or RemoteFunction."],
+["Rate-limit every remote","One fire per interval per player. Exploiters can send thousands of calls per second."],
+["Check distance and line of sight","An interaction is only valid if the server sees the player near the target."],
+["Keep secrets on the server","Anything in ReplicatedStorage, StarterGui or a LocalScript can be read by exploiters. API keys and webhooks belong in ServerScriptService."],
+["Client checks are speed bumps","LocalScript anti-cheat can be deleted or bypassed. Use it for friction, never for trust. Roblox’s own client protections help but are not a substitute."],
+["Obscure names aren’t security","Renaming a remote to random letters hides nothing from someone who can read your game’s files. Validation is the defense."],
+["Cap everything that grows","Set server-side maximums for earnings, speed, damage and fire rate. Even if something slips past validation, the cap limits the damage."],
+["Protect admin tools","Authorize every admin command on the server by UserId or group rank. Never trust a client-side flag like IsAdmin."],
+["Stop sending what players shouldn’t see","Wallhacks read whatever the server replicates. Use StreamingEnabled and keep hidden loot, enemies and objectives server-only until they are needed."],
+["Log, flag, then ban","Record player ID, action and time. Flag first, review, then ban in waves so lag doesn’t punish honest players."]];
+const CHK=["Every remote handler checks argument types and ranges","No remote lets the client set money, health or stats","Prices, damage and cooldowns come from server modules","Every remote has a per-player rate limit","Interactions are checked for distance on the server","Speed and teleport checks roll back before they punish","Player data uses session locking such as ProfileStore","Purchases run through ProcessReceipt and are idempotent","Secrets and webhook URLs exist only in server scripts","Important parts use server network ownership","Suspicious actions are logged with player ID and time","You tested with a script that fires every remote with garbage data","Admin commands are authorized by UserId or group rank on the server","Earnings, speed, damage and fire rate have server-side caps","StreamingEnabled is on for large maps so hidden objects are not sent early"];
+const CODE1=`local Remote = ReplicatedStorage.Buy
+local last = {}
+
+local function allow(player, key, interval)
+	local now = os.clock()
+	local id = player.UserId .. key
+	if last[id] and now - last[id] < interval then return false end
+	last[id] = now
+	return true
+end
+
+Remote.OnServerEvent:Connect(function(player, itemId, amount)
+	if typeof(itemId) ~= "string" or typeof(amount) ~= "number" then return end
+	if amount ~= math.floor(amount) or amount < 1 or amount > 99 then return end
+	if not allow(player, "buy", 0.25) then return end
+	-- Look up the price on the server. Never read it from the client.
+end)
+
+Players.PlayerRemoving:Connect(function(p)
+	for k in last do
+		if k:sub(1, #tostring(p.UserId)) == tostring(p.UserId) then last[k] = nil end
+	end
+end)`;
+const CODE2=`local MAX_SPEED = 32 -- WalkSpeed plus headroom
+local lastPos = {}
+
+RunService.Heartbeat:Connect(function(dt)
+	for _, player in Players:GetPlayers() do
+		local root = player.Character and player.Character:FindFirstChild("HumanoidRootPart")
+		if not root then continue end
+		local prev = lastPos[player]
+		if prev then
+			local flat = Vector3.new(root.Position.X - prev.X, 0, root.Position.Z - prev.Z)
+			if flat.Magnitude / dt > MAX_SPEED * 1.5 then
+				root.CFrame = CFrame.new(prev) -- roll back, log it, don't ban on one hit
+			end
+		end
+		lastPos[player] = root.Position
+	end
+end)
+
+Players.PlayerRemoving:Connect(function(p) lastPos[p] = nil end)`;
+/* ---------------------------------------------------------- */
+
+const $=id=>document.getElementById(id);
+function el(tag,cls,text){const e=document.createElement(tag);if(cls)e.className=cls;if(text)e.textContent=text;return e}
+
+TIPS.forEach(([t,b,c])=>{const d=el("div","card");d.append(el("h3","",t),el("p","",b));if(c)d.append(el("pre","",c));$("tipGrid").append(d)});
+RES.forEach(([n,d])=>{const x=el("div");x.append(el("b","",n),el("span","",d));$("resGrid").append(x)});
+PRIN.forEach(([t,b])=>{const d=el("div","card");d.append(el("h3","",t),el("p","",b));$("prinGrid").append(d)});
+$("code1").textContent=CODE1;$("code2").textContent=CODE2;
+
+const names=Object.keys(GENRES);
+function showGenre(n){
+  document.querySelectorAll(".tab").forEach(t=>t.setAttribute("aria-selected",t.textContent===n));
+  const g=GENRES[n],p=$("panel");p.textContent="";
+  [["Main resources",g.res],["How they cheat",g.bad],["How to stop it",g.fix]].forEach(([h,l])=>{
+    const c=el("div","card");c.append(el("h3","",h));const u=el("ul");l.forEach(i=>u.append(el("li","",i)));c.append(u);p.append(c)});
+}
+names.forEach(n=>{const b=el("button","tab",n);b.setAttribute("role","tab");b.onclick=()=>showGenre(n);$("tabs").append(b)});
+showGenre(names[0]);
+
+let saved=[];try{saved=JSON.parse(localStorage.getItem("glorified-checks")||"[]")}catch(e){}
+function prog(){const n=document.querySelectorAll(".chk input:checked").length;
+  $("prog").style.width=(n/CHK.length*100)+"%";if(n===CHK.length)toast("Fortress complete. Your game is locked down.");$("prog").parentNode.setAttribute("aria-valuenow",Math.round(n/CHK.length*100));
+  try{localStorage.setItem("glorified-checks",JSON.stringify([...document.querySelectorAll(".chk input")].map((x,i)=>x.checked?i:-1).filter(i=>i>=0)))}catch(e){}}
+CHK.forEach((t,i)=>{const li=el("li"),l=el("label"),c=el("input");c.type="checkbox";c.checked=saved.includes(i);c.onchange=prog;
+  l.append(c,el("span","",t));li.append(l);$("chk").append(li)});
+prog();
+
+const EXTL=[
+["Early days","2000s to 2016","Roblox’s early clients were simpler and less protected. The first injection tools and “exploit APIs” spread on forums, and records from this era are patchy."],
+["Golden age","2017 to 2020","Injectors with their own editors and script hubs became common. Names that defined the era include Synapse (later Synapse X), Sentinel, ProtoSmasher, SirHurt, KRNL and JJSploit. Every Roblox update kicked off another patch-and-repatch race."],
+["Monetized era","2020 to 2022","Premium subscriptions, ad-gated key systems and Discord storefronts turned exploiting into a business. In 2022 Roblox announced it had acquired the anti-tamper company Byfron."],
+["Hyperion lands","2023","Byfron’s technology, branded Hyperion, arrived on the 64-bit Windows client. Most Windows executors went offline and Synapse X’s developers wound down the product."],
+["After Hyperion","2024 to now","A smaller, faster-churning scene remains, mostly on mobile and macOS plus a few Windows tools. Ban waves are frequent, many “executors” are really malware, and any status list goes stale within weeks."]];
+const EXF=[
+["What an executor is","A program that attaches to the Roblox client and runs the user’s own Lua or Luau code inside it, which the normal player client never allows. That code runs with higher privileges than any game script."],
+["What they run","Luau scripts, pasted in, loaded from files, or pulled from “script hubs”. Most add extra function libraries beyond what games can call. The community loosely standardized them as UNC and checks them with public test suites such as sUNC."],
+["What they can touch","Only the user’s own client: whatever the server replicated, local values like walk speed, overlays like ESP, and any RemoteEvent or RemoteFunction the client can reach."],
+["What they can’t touch","The server. Server scripts, DataStores and other players’ clients are out of reach. When an exploit seems to hurt others, a server trusted a remote it should have validated."],
+["Where they’re sold","Free ad-gated key systems, paid subscriptions and Discord sales. The sellers are often anonymous, which is why fake and trojaned downloads are everywhere."],
+["Risks for users","Permanent and hardware-linked bans, stolen accounts and cookies, stolen Robux and items, and malware with full access to the PC. Running unknown code at that level is the real danger."],
+["Roblox’s stance","Exploiting violates the Terms of Use. Roblox doesn’t use executors. It invests in anti-tamper (Hyperion), detection and bans, and it keeps updating the client."],
+["What it means for you","Treat every client as hostile. Anything on a player’s machine can be read, changed or called, so the server must validate remotes, own the game state and cap values. See the anti-exploit section."]];
+const MYTH=[
+["Executors can edit the server","They only run on the player’s own client. Server code and data stay out of reach unless a remote trusts bad input."],
+["A free executor is a harmless tool","Many bundle stealers, miners or loaders. You hand unknown software full access to your PC."],
+["Bloxstrap is an executor","It is a launcher. It doesn’t inject or run scripts, and its own site says it has nothing to do with exploiting."],
+["Obfuscating remote names stops exploiters","Executors can list and fire any remote the client can see. Validation is the defense, not secrecy."],
+["A LocalScript anti-cheat is enough","Anything on the client can be deleted or bypassed. Use client checks as friction and trust only the server."],
+["Roblox uses executors","Roblox ships a bootstrapper of its own and builds anti-tamper against executors."]];
+const BOOT=[
+["What a bootstrapper is","A small launcher that checks which Roblox version is current, downloads or updates the client files, and starts the game when you press Play on the website."],
+["Roblox uses one","The official installer and launcher is Roblox’s own bootstrapper. It installs and updates the client and opens it from roblox-player links. Every Windows player already runs it."],
+["Bloxstrap","An open-source, third-party replacement for that launcher, created by pizzaboxer and Windows-only. It is a drop-in replacement and only runs when it is needed."],
+["What Bloxstrap adds","Persistent file modifications, a FastFlag editor, Discord Rich Presence, a customizable launcher look, server region display, and multiple game instances at once."],
+["Why it isn’t an executor","A bootstrapper prepares and launches the client. It doesn’t inject code or run Lua. Bloxstrap’s own site says it doesn’t behave like an exploit."],
+["Forks and cousins","Community forks such as Fishstrap build on the same idea with their own features. Treat each fork as a separate project and judge it by its source and maintainers."],
+["Staying safe","Download only from a project’s official pages. Fake sites copying the name are a common malware route. Never run a launcher that asks you to turn off your antivirus."],
+["Honest caveats","The no-ban claim comes from the project itself, and no official Roblox endorsement of third-party launchers was found when this page was written. Roblox can change its client or rules, so check current guidance."]];
+const CMP=[["Main purpose","Runs the user’s own code inside the client","Installs, updates and launches the client"],
+["Injects code","Yes, that is the point","No, per the project"],["Runs scripts","Yes, Luau with elevated access","No"],
+["Roblox rules","Violates the Terms of Use","Third-party, no official endorsement found"],
+["Ban risk","High and ongoing","Low per the project, not guaranteed"],
+["Malware risk","High from unofficial downloads","Mainly from fake copies of the real project"],
+["Roblox uses it","No, it builds defenses against them","Yes, Roblox ships its own"]];
+
+function toast(m){let t=$("toast");if(!t){t=el("div");t.id="toast";t.setAttribute("role","status");document.body.append(t)}t.textContent=m;t.classList.add("on");clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove("on"),2000)}
+function cards(id,a){a.forEach(([t,b])=>{const d=el("div","card");d.append(el("h3","",t),el("p","",b));$(id).append(d)})}
+cards("exGrid",EXF);cards("bootGrid",BOOT);
+
+const tl=$("tl"),tlp=$("tlp");
+EXTL.forEach(([t,y,b],k)=>{const n=el("button","node");n.setAttribute("role","tab");n.append(t,el("small","",y));
+  n.onclick=()=>{tl.querySelectorAll(".node").forEach(x=>x.setAttribute("aria-selected",x===n));tlp.textContent="";tlp.classList.remove("pop");void tlp.offsetWidth;tlp.classList.add("pop");tlp.append(el("h3","",t+" · "+y),el("p","",b))};
+  tl.append(n);if(!k)n.click()});
+MYTH.forEach(([m,f])=>{const b=el("button","flip");b.setAttribute("aria-label","Myth: "+m+". Tap to reveal the fact.");
+  const i=el("div","fi"),a=el("div","fa"),c=el("div","fb");a.append(el("small","","MYTH"),el("h3","",m));c.append(el("small","","FACT"),el("p","",f));
+  i.append(a,c);b.append(i);b.onclick=()=>b.classList.toggle("f");$("mythGrid").append(b)});
+const tb=el("table","cmp");tb.innerHTML="<thead><tr><th></th><th>Executor</th><th>Bootstrapper</th></tr></thead>";
+const bd=el("tbody");CMP.forEach(r=>{const tr=el("tr");r.forEach(c=>tr.append(el("td","",c)));bd.append(tr)});tb.append(bd);$("cmp").append(tb);
+
+/* hero stats */
+[["Luau tips",TIPS.length],["Tools",RES.length],["Genre guides",Object.keys(GENRES).length],["Security checks",CHK.length]].forEach(([l,n])=>{
+  const d=el("div","stat"),b=el("b","","0");d.append(b,el("span","",l));$("stats").append(d);
+  let i=0;const iv=setInterval(()=>{i+=Math.max(1,Math.ceil(n/25));if(i>=n){i=n;clearInterval(iv)}b.textContent=i},40)});
+
+/* copy buttons on every code block */
+document.querySelectorAll("pre").forEach(p=>{const w=el("div","cw");p.replaceWith(w);w.append(p);
+  const b=el("button","cp","Copy");b.onclick=()=>navigator.clipboard.writeText(p.textContent).then(()=>toast("Code copied"),()=>toast("Select and copy manually"));w.append(b)});
+/* click a resource to copy its name */
+$("resGrid").querySelectorAll("div").forEach(d=>{d.tabIndex=0;d.setAttribute("role","button");const n=d.querySelector("b").textContent;
+  const go=()=>navigator.clipboard.writeText(n).then(()=>toast("Copied “"+n+"”. Search it on GitHub or the Creator Hub."),()=>toast("Couldn’t copy"));
+  d.onclick=go;d.onkeydown=e=>{if(e.key==="Enter")go()}});
+
+/* spotlight and ripple */
+document.addEventListener("pointermove",e=>{const c=e.target.closest(".card,.res div");if(c){const r=c.getBoundingClientRect();c.style.setProperty("--mx",e.clientX-r.left+"px");c.style.setProperty("--my",e.clientY-r.top+"px")}});
+document.addEventListener("click",e=>{const b=e.target.closest(".btn,.tab,.node");if(!b)return;const r=b.getBoundingClientRect(),s=el("span","rp");s.style.left=e.clientX-r.left+"px";s.style.top=e.clientY-r.top+"px";b.append(s);setTimeout(()=>s.remove(),600)});
+
+/* scroll progress, active nav, reveal */
+const sp=el("div");sp.id="sp";document.body.append(sp);
+addEventListener("scroll",()=>{sp.style.width=(scrollY/(document.documentElement.scrollHeight-innerHeight)*100)+"%"},{passive:true});
+const links=[...document.querySelectorAll("nav div a")];
+const so=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)links.forEach(a=>a.classList.toggle("act",a.getAttribute("href")==="#"+e.target.id))}),{rootMargin:"-45% 0px -50% 0px"});
+document.querySelectorAll("section").forEach(x=>so.observe(x));
+const ro=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");ro.unobserve(e.target)}}),{threshold:.08});
+document.querySelectorAll("section h2,.sub,.card,.res div,.flip,.node,.chk li,.note,.cw").forEach(x=>{if(!x.closest("#panel")){x.classList.add("rv");ro.observe(x)}});
+
+/* Starfield with mouse parallax and shooting stars */
+(function(){
+  const cv=$("stars"),x=cv.getContext("2d"),still=matchMedia("(prefers-reduced-motion:reduce)").matches;
+  let w,h,S=[],M=[0,0],sh=null;
+  function size(){w=cv.width=innerWidth;h=cv.height=innerHeight;
+    S=Array.from({length:Math.min(240,Math.floor(w*h/7000))},()=>({x:Math.random()*w,y:Math.random()*h,r:Math.random()*1.5+.2,v:Math.random()*.15+.03,p:Math.random()*6.3,red:Math.random()<.3}))}
+  addEventListener("pointermove",e=>{M=[e.clientX/w-.5,e.clientY/h-.5]});
+  function draw(t){x.clearRect(0,0,w,h);
+    S.forEach(s=>{const a=.35+.35*Math.sin(t/900+s.p);x.fillStyle=s.red?"rgba(255,80,100,"+a+")":"rgba(255,235,238,"+a+")";
+      x.beginPath();x.arc(s.x+M[0]*s.r*16,s.y+M[1]*s.r*16,s.r,0,6.3);x.fill();if(!still){s.y+=s.v;if(s.y>h)s.y=0}});
+    if(!still){if(!sh&&Math.random()<.005)sh={x:Math.random()*w*.8,y:Math.random()*h*.5,l:0};
+      if(sh){const g=x.createLinearGradient(sh.x,sh.y,sh.x-110,sh.y-55);g.addColorStop(0,"#ff2d4a");g.addColorStop(1,"rgba(255,45,74,0)");
+        x.strokeStyle=g;x.lineWidth=2;x.beginPath();x.moveTo(sh.x,sh.y);x.lineTo(sh.x-110,sh.y-55);x.stroke();sh.x+=15;sh.y+=7.5;if(++sh.l>70)sh=null}
+      requestAnimationFrame(draw)}}
+  size();addEventListener("resize",()=>{size();if(still)draw(0)});draw(0);
+})();
+</script>
+</body>
+</html>
